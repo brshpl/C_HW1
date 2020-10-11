@@ -1,4 +1,4 @@
-#include "students_list.h"
+#include "../include/students_list.h"
 
 const size_t NUM_STUD_DEFAULT = 100;
 
