@@ -1,6 +1,6 @@
-#include "../include/students_list.h"
+#include "students/students_list.h"
 
-const size_t NUM_STUD_DEFAULT = 100;
+//const size_t NUM_STUD_DEFAULT = 100;
 
 struct StudentsList *create_students_list() {
     struct StudentsList *list = NULL;
@@ -8,7 +8,7 @@ struct StudentsList *create_students_list() {
     if (list == NULL) {
         return NULL;
     }
-    list->arr = (struct Student*) malloc(100*sizeof(struct Student));
+    list->arr = (struct Student*) malloc(NUM_STUD_DEFAULT * sizeof(struct Student));
     if (list->arr == NULL) {
         free(list);
         return NULL;
@@ -35,18 +35,18 @@ void remove_student_from_list(struct Student *student) {
     student->age = 0;
 }
 
-struct Student *add_new_student(const struct Student *const new_student, struct StudentsList *list) {
-    if (new_student == NULL || list == NULL)
+struct Student *add_new_student(const struct Student *const new_student, struct StudentsList **list) {
+    if (new_student == NULL || list == NULL || (*list) == NULL)
         return NULL;
-    if (list->cur_size == list->mem_size) {
+    if ((*list)->cur_size == (*list)->mem_size) {
         struct StudentsList *tmp = NULL;
-        tmp = (struct StudentsList*) realloc(list, list->mem_size + NUM_STUD_DEFAULT);
+        tmp = (struct StudentsList*) realloc((*list), (*list)->mem_size + NUM_STUD_DEFAULT);
         if (tmp == NULL)
             return NULL;
-        list = tmp;
-        list->mem_size += NUM_STUD_DEFAULT;
+        (*list) = tmp;
+        (*list)->mem_size += NUM_STUD_DEFAULT;
     }
-    struct Student *student_in_list = &(list->arr[list->cur_size]);
+    struct Student *student_in_list = &((*list)->arr[(*list)->cur_size]);
 
     size_t str_length = strlen(new_student->first_name);
     student_in_list->first_name = malloc(sizeof(char) * str_length + 1);
@@ -65,7 +65,7 @@ struct Student *add_new_student(const struct Student *const new_student, struct 
     student_in_list->age = new_student->age;
     student_in_list->gender = new_student->gender;
 
-    ++(list->cur_size);
+    ++((*list)->cur_size);
     return student_in_list;
 }
 
@@ -80,7 +80,7 @@ struct StudentsList *find_students_by_last_name(const char *const last_name, con
     for (size_t i = 0; i < list->cur_size; ++i) {
         if (strncmp(last_name, list->arr[i].last_name, l_name_length + 1) == 0 &&
             strlen(list->arr[i].last_name) == l_name_length) {
-            if (add_new_student(&(list->arr[i]), found_students) == NULL) {
+            if (add_new_student(&(list->arr[i]), &found_students) == NULL) {
                 remove_students_list(found_students);
                 return NULL;
             }
@@ -104,7 +104,7 @@ struct StudentsList *find_students_by_first_name(const char *const first_name, c
     for (size_t i = 0; i < list->cur_size; ++i) {
         if (strncmp(first_name, list->arr[i].first_name, f_name_length + 1) == 0 &&
             strlen(list->arr[i].first_name) == f_name_length) {
-            if (add_new_student(&(list->arr[i]), found_students) == NULL) {
+            if (add_new_student(&(list->arr[i]), &found_students) == NULL) {
                 remove_students_list(found_students);
                 return NULL;
             }

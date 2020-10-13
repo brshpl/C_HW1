@@ -1,47 +1,32 @@
-cmake_minimum_required(VERSION 3.17)
-project(IZ1 C)
+cmake_minimum_required(VERSION 3.1)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+project(testy)
 
-# Download and unpack googletest at configure time
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+##
+### Test definitions ###
+##
+
+configure_file(CMakeLists.txt.in
+        googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-RESULT_VARIABLE result
-WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
-message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-endif()
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
-RESULT_VARIABLE result
-WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
-message(FATAL_ERROR "Build step for googletest failed: ${result}")
-endif()
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
 
-# Prevent overriding the parent project's compiler/linker
-# settings on Windows
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
+        ${CMAKE_BINARY_DIR}/googletest-build)
 
-# Add googletest directly to our build. This defines
-# the gtest and gtest_main targets.
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-EXCLUDE_FROM_ALL)
+enable_testing()
+add_subdirectory(test)
 
-# The gtest/gtest_main targets carry header search path
-# dependencies automatically when using CMake 2.8.11 or
-# later. Otherwise we have to add them here ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-include_directories("${gtest_SOURCE_DIR}/include")
-endif()
+##
+### Source definitions ###
+##
 
-# Now simply link against gtest or gtest_main as needed. Eg
-add_executable(IZ1 src/main.c src/student.c include/student.h src/students_list.c include/students_list.h)
-target_link_libraries(IZ1 gtest_main)
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
-add_executable(unit_tests src/main.c src/student.c
-        include/student.h src/students_list.c include/students_list.h
-        test/main.cpp test/student.cpp test/students_list.cpp)
-target_link_libraries(unit_tests gtest_main)
-add_test (NAME unit COMMAND ${CMAKE_BINARY_DIR}/unit_tests)
+file(GLOB sources
+        "${PROJECT_SOURCE_DIR}/include/students/*.h"
+        "${PROJECT_SOURCE_DIR}/src/*.c")
+
+add_executable(testy ${sources})

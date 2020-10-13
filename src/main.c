@@ -1,7 +1,8 @@
+#include "students/student.h"
+#include "students/students_list.h"
+
 #include <stdio.h>
 #include <stdio.h>
-#include "../include/student.h"
-#include "../include/students_list.h"
 
 int main() {
     const char MALE = 'm';
@@ -16,22 +17,22 @@ int main() {
     struct Student *test_student_33 = create_student("Vladimir", "Zelenskiy", MALE, 19);
     struct Student *test_student_44 = create_student("Max", "Yakovitskiy", MALE, 23);
 
-    if (add_new_student(test_student_1, students_list) == NULL) {
+    if (add_new_student(test_student_1, &students_list) == NULL) {
         return -1;
     }
-    if (add_new_student(test_student_2, students_list) == NULL) {
+    if (add_new_student(test_student_2, &students_list) == NULL) {
         return -1;
     }
-    if (add_new_student(test_student_3, students_list) == NULL) {
+    if (add_new_student(test_student_3, &students_list) == NULL) {
         return -1;
     }
-    if (add_new_student(test_student_4, students_list) == NULL) {
+    if (add_new_student(test_student_4, &students_list) == NULL) {
         return -1;
     }
-    if (add_new_student(test_student_33, students_list) == NULL) {
+    if (add_new_student(test_student_33, &students_list) == NULL) {
         return -1;
     }
-    if (add_new_student(test_student_44, students_list) == NULL) {
+    if (add_new_student(test_student_44, &students_list) == NULL) {
         return -1;
     }
     struct Student *founded = NULL;
@@ -88,49 +89,49 @@ int main() {
 
 
 
-#include <string.h>
-#include <stdlib.h>
-#include "../include/student.h"
-
-#define NEW_STR "New"
-#define END_STR "End"
-#define UNEXP_INP "Error. Unexpected input."
-
-struct Student* input_new_student();
-
-int main() {
-    printf("Input \"%s\" to add new student or \"%s\" to finish adding\n", NEW_STR, END_STR);
-    char buffer[4];
-    scanf("%3s", buffer);
-    if (strncmp(NEW_STR, buffer, strlen(NEW_STR)) == 0) {
-        input_new_student();
-    }
-    else if (strncmp(END_STR, buffer, strlen(END_STR)) == 0) {
-
-    }
-    else
-        printf("%s\n", UNEXP_INP);
-    return 0;
-}
-
-struct Student* input_new_student() {
-    printf("Input first name:\n");
-    char first_name[50];
-    scanf("%49s", first_name);
-
-    printf("Input last name:\n");
-    char last_name[50];
-    scanf("%49s", last_name);
-
-    printf("Input age:\n");
-    unsigned short age = 0;
-    char buffer[4];
-    scanf("%3s", buffer);
-    // strtoul();
-
-    printf("Input gender:\n");
-    char gender;
-    scanf("%c", &gender);
-
-    return add_student(first_name, last_name, gender, age);
-}
+//#include <string.h>
+//#include <stdlib.h>
+//#include "../include/student.h"
+//
+//#define NEW_STR "New"
+//#define END_STR "End"
+//#define UNEXP_INP "Error. Unexpected input."
+//
+//struct Student* input_new_student();
+//
+//int main() {
+//    printf("Input \"%s\" to add new student or \"%s\" to finish adding\n", NEW_STR, END_STR);
+//    char buffer[4];
+//    scanf("%3s", buffer);
+//    if (strncmp(NEW_STR, buffer, strlen(NEW_STR)) == 0) {
+//        input_new_student();
+//    }
+//    else if (strncmp(END_STR, buffer, strlen(END_STR)) == 0) {
+//
+//    }
+//    else
+//        printf("%s\n", UNEXP_INP);
+//    return 0;
+//}
+//
+//struct Student* input_new_student() {
+//    printf("Input first name:\n");
+//    char first_name[50];
+//    scanf("%49s", first_name);
+//
+//    printf("Input last name:\n");
+//    char last_name[50];
+//    scanf("%49s", last_name);
+//
+//    printf("Input age:\n");
+//    unsigned short age = 0;
+//    char buffer[4];
+//    scanf("%3s", buffer);
+//    // strtoul();
+//
+//    printf("Input gender:\n");
+//    char gender;
+//    scanf("%c", &gender);
+//
+//    return add_student(first_name, last_name, gender, age);
+//}

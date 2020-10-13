@@ -1,4 +1,4 @@
-#include "../include/student.h"
+#include "students/student.h"
 
 struct Student *create_student(const char* _first_name, const char* _last_name, const char _gender, const unsigned short _age) {
     struct Student *new_student = malloc(sizeof(struct Student));
