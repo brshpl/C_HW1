@@ -104,7 +104,7 @@ TEST(find_student_by_name, true_find){
     struct Student *found_stud_addr = find_student_by_name("Igor", "Barishpol", list);
     struct Student *not_found_stud_addr = find_student_by_name("Ivan", "Ivanov", list);
     EXPECT_EQ(found_stud_addr, &list->arr[1]);
-    EXPECT_NE(not_found_stud_addr, nullptr);
+    EXPECT_EQ(not_found_stud_addr, nullptr);
     remove_students_list(list);
     remove_student(test_Student1);
     remove_student(test_Student2);
