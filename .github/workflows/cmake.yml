@@ -44,3 +44,8 @@ jobs:
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C $BUILD_TYPE
+
+    - name: Codecov
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: bash <(curl -s https://codecov.io/bash) -t d345b91e-7d6e-48c5-ac70-f10dfd1bbf4b
