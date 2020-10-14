@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.1)
 
 project(testy)
 
+set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+
 ##
 ### Test definitions ###
 ##
