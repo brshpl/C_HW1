@@ -1,6 +1,6 @@
 #include "students/students_list.h"
 
-//const size_t NUM_STUD_DEFAULT = 100;
+const size_t NUM_STUD_DEFAULT = 100;
 
 struct StudentsList *create_students_list() {
     struct StudentsList *list = NULL;

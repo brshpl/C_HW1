@@ -3,7 +3,7 @@
 
 #include "student.h"
 
-const size_t NUM_STUD_DEFAULT = 100;
+//const size_t NUM_STUD_DEFAULT = 100;
 
 struct StudentsList {
     size_t cur_size;
