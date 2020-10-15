@@ -58,7 +58,7 @@ jobs:
         id: coverage
         # Generates a GitHub Workflow output named `lines`
         run: |
-          COVERAGE="$( parse-covergae-report )"
+          COVERAGE="$( parse-coverage-report )"
           echo "##[set-output name=lines;]${COVERAGE}%"
 
       # Use the output from the `coverage` step
