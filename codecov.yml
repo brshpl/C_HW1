@@ -1,6 +1,10 @@
-ignore:
-  - "googletest-src/**/*"
-  - "/usr/**/*"
-  - "/home/runner/work/C_HW1/build/googletest-src/**/*"
-  - "/usr"
-  - "/**/*/googletest-src/**/*"
+coverage:
+  status:
+    project:
+      tests:
+        ignore:
+          - "googletest-src/**/*"
+          - "/usr/**/*"
+          - "/home/runner/work/C_HW1/build/googletest-src/**/*"
+          - "/usr"
+          - "/**/*/googletest-src/**/*"
