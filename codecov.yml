@@ -1,4 +1,6 @@
-#coverage:
+coverage:
+  ignore:
+    - "build"
 #  status:
 #    project:
 #      default: false  # disable the default status that measures entire project
