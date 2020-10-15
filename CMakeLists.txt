@@ -28,6 +28,6 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 file(GLOB sources
         "${PROJECT_SOURCE_DIR}/include/students/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.c"
-        -O0 --coverage -fprofile-arcs -ftest-coverage)
+        -fprofile-arcs -ftest-coverage)
 
 add_executable(testy ${sources})
