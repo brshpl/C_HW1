@@ -51,13 +51,3 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f "C_HW1/src/*"
 
     - uses: codecov/codecov-action@v1
-
-    - name: Linters
-      working-directory: ${{runner.workspace}}
-      shell: bash
-      run:
-      - sudo pip install cpplint
-      - cpplint --filter=-legal/copyright,-readability/casting src/student.c
-      - cpplint --filter=-legal/copyright,-readability/casting src/students_list.c
-      - cppcheck --std=c99 --enable=all -inconclusive src
-      - cppcheck --std=c++11 --enable=all -inconclusive test
