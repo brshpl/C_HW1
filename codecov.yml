@@ -1,10 +1,9 @@
-coverage:
-  status:
-    project:
-      tests:
-        ignore:
-          - "googletest-src/**/*"
-          - "/usr/**/*"
-          - "/home/runner/work/C_HW1/build/googletest-src/**/*"
-          - "/usr"
-          - "/**/*/googletest-src/**/*"
+codecov:
+  strict_yaml_branch: develop  # only use the latest copy on develop branch
+ignore:
+  - "googletest-src/**/*"
+  - "/usr/**/*"
+  - "/home/runner/work/C_HW1/build/googletest-src/**/*"
+  - "/usr"
+  - "/**/*/googletest-src/**/*"
+
