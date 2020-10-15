@@ -4,6 +4,6 @@ ignore:
   - "googletest-src/**/*"
   - "/usr/**/*"
   - "/home/runner/work/C_HW1/build/googletest-src/**/*"
-  - "/usr"
+  - "^\/usr.*"
   - "/**/*/googletest-src/**/*"
 
