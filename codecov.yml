@@ -1,6 +1,7 @@
 coverage:
   ignore:
     - "build"
+    - "C_HW1/src/main.c"
 #  status:
 #    project:
 #      default: false  # disable the default status that measures entire project
