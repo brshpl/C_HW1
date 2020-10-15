@@ -3,5 +3,5 @@ coverage:
     project:
       default: false  # disable the default status that measures entire project
       tests:  # declare a new status context "tests"
-        paths: ["!googletest-src/"]  # remove all files in ""
+        paths: ["!googletest-src/", "!build/"]  # remove all files in ""
 
