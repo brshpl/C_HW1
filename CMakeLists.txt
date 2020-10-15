@@ -34,3 +34,9 @@ file(GLOB sources
 
 add_executable(testy ${sources})
 
+set_target_properties(testy
+        PROPERTIES
+        COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+        LINK_FLAGS    "-lgcov --coverage"
+        )
+
