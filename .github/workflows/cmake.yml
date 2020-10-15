@@ -48,4 +48,4 @@ jobs:
     - name: Codecov
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: bash <(curl -s https://codecov.io/bash) -t d345b91e-7d6e-48c5-ac70-f10dfd1bbf4b -f ../src/*
+      run: bash <(curl -s https://codecov.io/bash) -t d345b91e-7d6e-48c5-ac70-f10dfd1bbf4b
