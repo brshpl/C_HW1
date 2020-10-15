@@ -1,9 +1,7 @@
-codecov:
-  strict_yaml_branch: develop  # only use the latest copy on develop branch
-ignore:
-  - "googletest-src/**/*"
-  - "/usr/**/*"
-  - "/home/runner/work/C_HW1/build/googletest-src/**/*"
-  - "^\/usr.*"
-  - "/**/*/googletest-src/**/*"
+coverage:
+  status:
+    project:
+      default: false  # disable the default status that measures entire project
+      tests:  # declare a new status context "tests"
+        paths: ["!test/"]  # remove all files in ""
 
